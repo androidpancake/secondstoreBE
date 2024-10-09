@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('slug');
             $table->string('description');
             $table->integer('price');
-            $table->string('image');
             $table->date('year');
             $table->date('date_added');
             $table->string('condition');

@@ -20,7 +20,7 @@ class Products extends Model
         'slug',
         'description',
         'price',
-        'image',
+        'thumbnail',
         'year',
         'date_added',
         'condition',
@@ -28,7 +28,6 @@ class Products extends Model
         'stock',
         'is_popular',
         'category_id',
-        'deleted_at'
     ];
 
     public static function boot()
@@ -40,7 +39,7 @@ class Products extends Model
         });
     }
 
-    public function setNameAttribute($value)
+    public function setTitleAttribute($value)
     {
         $this->attributes['title'] = $value;
         $this->attributes['slug'] = Str::slug($value);
@@ -58,6 +57,6 @@ class Products extends Model
 
     public function categories()
     {
-        return $this->belongsTo(Categories::class, 'category_id');
+        return $this->belongsTo(Categories::class, 'category_id', 'id');
     }
 }
