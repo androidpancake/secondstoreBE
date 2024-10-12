@@ -13,33 +13,21 @@ class ProductResource extends JsonResource
      * @return array<string, mixed>
      */
 
-    public $id;
-    public $title;
-    public $slug;
-    public $description;
-    public $price;
-    public $year;
-    public $date_added;
-    public $condition;
-    public $defect;
-    public $stock;
-    public $is_popular;
-    public $category_id;
-
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->status,
-            'title' => $this->message,
+            'id' => $this->id,
+            'title' => $this->title,
             'slug' => $this->slug,
             'description' => $this->description,
             'price' => $this->price,
-            'date_added' => $this->date_added,
+            'year' => $this->year,
             'condition' => $this->condition,
             'defect' => $this->defect,
             'stock' => $this->stock,
             'is_popular' => $this->is_popular,
             'category' => new CategoryResource($this->whenLoaded('categories')),
+            'image' => ProductImageResource::collection($this->whenLoaded('productImage'))
         ];
     }
 }

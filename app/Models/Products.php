@@ -22,7 +22,6 @@ class Products extends Model
         'price',
         'thumbnail',
         'year',
-        'date_added',
         'condition',
         'defect',
         'stock',
@@ -52,7 +51,7 @@ class Products extends Model
 
     public function productImage()
     {
-        return $this->hasMany(Product_Image::class);
+        return $this->hasMany(Product_Image::class, 'products_id', 'id');
     }
 
     public function categories()
