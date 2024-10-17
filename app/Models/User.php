@@ -59,4 +59,9 @@ class User extends Authenticatable
             $model->id = Str::uuid();
         });
     }
+
+    public function savedItems()
+    {
+        return $this->belongsToMany(Products::class, 'saveds', 'user_id', 'product_id');
+    }
 }

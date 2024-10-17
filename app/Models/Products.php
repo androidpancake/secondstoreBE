@@ -58,4 +58,14 @@ class Products extends Model
     {
         return $this->belongsTo(Categories::class, 'category_id', 'id');
     }
+
+    public function saveds()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function Bookings()
+    {
+        return $this->hasMany(Bookings::class);
+    }
 }

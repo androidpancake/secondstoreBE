@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data = Products::with(['categories', 'productImage'])->get();
+        $data = Products::with(['categories', 'productImage'])->paginate(10);
         return ApiResponseClass::sendResponse(ProductResource::collection($data), '', 200);
     }
 
@@ -66,9 +66,10 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Products $product)
     {
-        //
+        $product->load(['categories', 'productImage']);
+        return ApiResponseClass::sendResponse(new ProductResource($product), 'Success', 200);
     }
 
     /**
@@ -93,5 +94,10 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function sort()
+    {
+        
     }
 }
